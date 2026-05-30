@@ -48,6 +48,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Patient::class, 'id');
     }
+    public function admin()
+    {
+        return $this->hasOne(Admin::class, 'id');
+    }
 
     /**
      * Get the attributes that should be cast.

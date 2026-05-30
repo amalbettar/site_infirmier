@@ -13,5 +13,13 @@ class Patient extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id');
-    }   
+    } 
+    public function avis()
+    {
+        return $this->hasMany(Avis::class,'patient_id','id');
+    } 
+    public function rendezvous()
+    {
+        return $this->hasMany(Rendezvous::class,'patient_id','id');
+    } 
 }

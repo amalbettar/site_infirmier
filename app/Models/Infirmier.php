@@ -21,4 +21,16 @@ class Infirmier extends Model
     {
         return $this->belongsTo(User::class, 'id');
     }
+    public function rendezvous()
+    {
+        return $this->hasMany(Rendezvous::class,'infirmier_id','id');
+    }
+    public function disponibilites()
+    {
+        return $this->hasMany(Disponibilite::class,'infirmier_id','id');
+    }
+    public function avis()
+    {
+        return $this->hasMany(Avis::class,'infirmier_id','id');
+    }
 }

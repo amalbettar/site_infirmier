@@ -49,21 +49,32 @@
 
 <div class="box">
 
-    <h2>Compte en attente</h2>
 
-    <p>
-        Votre compte infirmier est en attente
-        de validation par l’administrateur.
+<h2>Statut du compte</h2>
+
+@if(session('status') === 'en_attente')
+
+    <p style="color:orange">
+        Votre compte est en attente de validation par l’administrateur.
     </p>
 
-    <p>
-        Vous recevrez l’accès après vérification
-        de vos informations.
+@elseif(session('status') === 'refuse')
+
+    <p style="color:red">
+        Désolé. Votre compte a été refusé par l’administrateur.
     </p>
 
-    <a href="/">
-        Retour à l'accueil
-    </a>
+@else
+
+    <p>
+        Statut inconnu.
+    </p>
+
+@endif
+
+<a href="{{ route('home') }}">
+    Retour à l'accueil
+</a>
 
 </div>
 
