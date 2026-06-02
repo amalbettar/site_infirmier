@@ -4,167 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-
-    <!-- Bootstrap (IMPORTANT) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Profile</title>    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            color: #333;
-        }
-
-        .navbar {
-            background: #0d6efd;
-            padding: 15px 0;
-            width: 100%;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: white;
-            font-size: 16px;
-            text-decoration: none;
-            transition: 0.3s;
-            font-weight: bolder;
-        }
-
-        .nav-links a:hover {
-            color: #dbeafe;
-        }
-
-        .btn-login {
-            background: white;
-            color: #0d6efd !important;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        /* User Box */
-
-        .user-box {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 8px 15px;
-            border-radius: 10px;
-        }
-
-        .user-name {
-            color: white;
-            font-weight: bold;
-            font-size: 15px;
-        }
-
-        .btn-logout {
-            background: #492dbb;
-            color: white;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn-logout:hover {
-            background: #dc3545;
-        }
-
-        /* ===== NAVBAR ===== */
-
-
-        /* ===== PROFILE CARD ===== */
-        .profile-card {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        /* IMAGE */
-        .profile-image {
-            display: block;
-            margin: 0 auto;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #0d6efd;
-        }
-
-        /* FORM */
-        .form-label {
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .form-control {
-            padding: 12px;
-            border-radius: 8px;
-        }
-
-        .readonly {
-            background: #f1f1f1;
-        }
-
-        /* ERROR */
-        .error-text {
-            color: red;
-            font-size: 12px;
-        }
-
-        /* BUTTONS */
-        button[type="submit"] {
-            margin-top: 8px;
-            background: #0d6efd;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-        }
-
-        .btn-save {
-            background: #198754;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            border: none;
-        }
-
-        /* TITLE */
-        .section-title {
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('styles/profil.css') }}">
 </head>
 
 <body>
@@ -222,14 +64,14 @@
                         <img id="preview" src="{{ asset($infos->photo) }}" class="profile-image">
 
                         <h2 class="mt-3">
-                            {{ $infos->nom }} {{ $infos->prenom }}
+                            {{ucfirst($infos->nom)  }} {{ucfirst($infos->prenom)  }}
                         </h2>
 
-                        <p class="text-muted">Profil Infirmier</p>
+                        <p class="text-muted">Profil Patient</p>
                     </div>
 
                     <!-- FORM -->
-                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('profile_patient.update') }}" method="POST" enctype="multipart/form-data">
 
                         @csrf
                         @method('PUT')

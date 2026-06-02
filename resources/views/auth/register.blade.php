@@ -4,75 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription Infirmier</title>
-
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            background:#f4f7fa;
-            margin:0;
-            padding:0;
-        }
-
-        .container{
-            width:500px;
-            margin:40px auto;
-            background:white;
-            padding:30px;
-            border-radius:10px;
-            box-shadow:0 0 10px rgba(0,0,0,0.1);
-        }
-
-        h2{
-            text-align:center;
-            margin-bottom:25px;
-            color:#1e88e5;
-        }
-
-        .form-group{
-            margin-bottom:15px;
-        }
-
-        label{
-            display:block;
-            margin-bottom:5px;
-            font-weight:bold;
-        }
-
-        input,
-        select,
-        textarea{
-            width:100%;
-            padding:10px;
-            border:1px solid #ccc;
-            border-radius:5px;
-        }
-
-        textarea{
-            resize:none;
-            height:100px;
-        }
-
-        button{
-            width:100%;
-            padding:12px;
-            background:#1e88e5;
-            color:white;
-            border:none;
-            border-radius:5px;
-            font-size:16px;
-            cursor:pointer;
-        }
-
-        button:hover{
-            background:#1565c0;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('styles/register.css') }}">
 </head>
 <body>
 
 <div class="container">
 
-    <h2>Inscription {{ $role }} </h2>
+    <h2><span class="imoji"><i class="fa-solid fa-user-injured"></i></span> Inscription {{ucfirst($role)  }} </h2>
 
     <form action="{{ route("inscription.store") }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -93,11 +32,20 @@
             <label>Email</label>
             <input type="email" name="email" required>
         </div>
-
+        @error('email')
+            <span class="text-red-500 text-sm">
+                {{ $message }}
+            </span>
+        @enderror
 
         <div class="form-group">
             <label>Téléphone</label>
             <input type="text" name="telephone">
+            @error('telephone')
+                <span class="text-red-500 text-sm">
+                    {{ $message }}
+                </span>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -142,12 +90,26 @@
         <div class="form-group">
             <label>Mot de passe</label>
             <input type="password" name="password" required>
+
+            @error('password')
+                <span class="text-red-500 text-sm">
+                    {{ $message }}
+                </span>
+            @enderror
         </div>
 
         <div class="form-group">
             <label>Confirmer mot de passe</label>
             <input type="password" name="password_confirmation" required>
+
+            @error('password_confirmation')
+                <span class="text-red-500 text-sm">
+                    {{ $message }}
+                </span>
+            @enderror
         </div>
+
+        <a href="{{ route('login') }}">vous avez deja un compte ? </a>
 
         <button type="submit">
             S'inscrire

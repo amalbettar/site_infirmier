@@ -68,6 +68,7 @@ class ProfileInfirmierController extends Controller
                     'telephone' => $request->telephone
                 ]);
             }
+            
 
             if ($request->field == 'email') {
                 $user->update([
@@ -97,6 +98,11 @@ class ProfileInfirmierController extends Controller
             if ($request->field == 'description') {
                 $infirmier->update([
                     'description' => $request->description
+                ]);
+            }
+            if ($request->field == 'status') {
+                $infirmier->update([
+                    'status' => $request->status
                 ]);
             }
         }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MailInfirmierEvent;
 use App\Models\Avis;
 use App\Models\Disponibilite;
 use App\Models\Infirmier;
 use App\Models\Patient;
 use App\Models\Rendezvous;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -36,6 +38,8 @@ class AdminController extends Controller
         $infirmier->validation = 'accepte';
 
         $infirmier->save();
+        $user=User::findOrFail($id);
+        MailInfirmierEvent::dispatch($user,'accepte');
 
         return back()->with('success', 'Compte accepté.');
     }
@@ -45,8 +49,9 @@ class AdminController extends Controller
         $infirmier = Infirmier::findOrFail($id);
 
         $infirmier->validation = 'refuse';
-
+        $user=User::findOrFail($id);
         $infirmier->save();
+        MailInfirmierEvent::dispatch($user,'refuse');
 
         return back()->with('success', 'Compte refusé.');
     }

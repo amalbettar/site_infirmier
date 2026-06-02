@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+/* ── Variables ── */
+:root {
+    --blue-50:  #E6F1FB;
+    --blue-100: #B5D4F4;
+    --blue-600: #185FA5;
+    --blue-800: #0C447C;
+    --blue-900: #042C53;
+    --gray-50:  #F1EFE8;
+    --gray-100: #D3D1C7;
+    --gray-400: #888780;
+    --gray-600: #5F5E5A;
+    --gray-900: #2C2C2A;
+    --green-50: #EAF3DE;
+    --green-800: #27500A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-900);
+}
+
+/* ─── NAVBAR ─── */
+
+.navbar {
+    background: var(--blue-800);
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.container { width: 90%; max-width: 1200px; margin: auto; }
+
+.nav-content { display: flex; justify-content: space-between; align-items: center; }
+
+.logo {
+    color: white; font-size: 20px; font-weight: 700;
+    text-decoration: none; display: flex; align-items: center; gap: 10px;
+}
+.logo i { color: var(--blue-100); }
+
+.nav-links { display: flex; align-items: center; gap: 6px; }
+
+.nav-links a {
+    color: rgba(255,255,255,0.82); font-size: 14px; text-decoration: none;
+    padding: 7px 14px; border-radius: 8px; font-weight: bolder;
+    transition: background 0.2s, color 0.2s;
+}
+.nav-links a:hover { background: rgba(255,255,255,0.1); color: white; }
+
+.user-box {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 10px;
+}
+.user-name { color: white; font-weight: 500; font-size: 14px; }
+
+.btn-logout {
+    background: transparent; color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.25); padding: 6px 14px;
+    border-radius: 8px; cursor: pointer; font-weight: 500; font-size: 13px;
+    font-family: 'Outfit', sans-serif; transition: 0.2s;
+}
+.btn-logout:hover { background: #dc3545; border-color: #dc3545; color: white; }
+
+/* ─── LAYOUT ─── */
+
+.py-5 { padding: 44px 0 60px; }
+
+.row { display: flex; flex-wrap: wrap; margin: 0 -12px; }
+.justify-content-center { justify-content: center; }
+.col-lg-10 { width: 100%; max-width: 860px; padding: 0 12px; }
+.col-md-6  { width: 50%;  padding: 0 12px; }
+.col-12    { width: 100%; padding: 0 12px; }
+
+.mb-3 { margin-bottom: 20px; }
+.mb-4 { margin-bottom: 28px; }
+.mt-3 { margin-top: 14px; }
+.mt-4 { margin-top: 28px; }
+.text-center { text-align: center; }
+
+/* ─── ALERT ─── */
+
+.alert { padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; margin-bottom: 24px; }
+.alert-success { background: var(--green-50); color: var(--green-800); border: 0.5px solid #C0DD97; }
+
+/* ─── PROFILE CARD ─── */
+
+.profile-card {
+    background: white; border-radius: 20px;
+    border: 0.5px solid var(--gray-100); padding: 44px 48px;
+}
+
+.profile-image {
+    width: 130px; height: 130px; object-fit: cover;
+    border-radius: 50%; border: 3px solid var(--blue-100);
+    display: block; margin: 0 auto;
+}
+
+.profile-card .text-center h2 {
+    font-size: 22px; font-weight: 700; color: var(--blue-900); margin-top: 14px;
+}
+
+.text-muted {
+    display: inline-block; background: var(--blue-50); color: var(--blue-800);
+    font-size: 12px; font-weight: 600; padding: 4px 14px;
+    border-radius: 20px; margin-top: 6px; letter-spacing: 0.3px;
+}
+
+/* ─── INPUTS ─── */
+
+.form-label { display: block; font-size: 13px; font-weight: 500; color: var(--gray-600); margin-bottom: 6px; }
+
+.form-control {
+    width: 100%; padding: 10px 14px;
+    border: 0.5px solid var(--gray-100); border-radius: 9px;
+    font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--gray-900);
+    background: white; outline: none; display: block;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-control:focus {
+    border-color: var(--blue-600);
+    box-shadow: 0 0 0 3px rgba(24,95,165,0.08);
+}
+.form-control.readonly,
+.form-control:disabled {
+    background: var(--gray-50); color: var(--gray-400);
+    cursor: not-allowed; border-color: var(--gray-100);
+}
+input[type="file"].form-control { padding: 8px 14px; font-size: 13px; color: var(--gray-600); }
+
+/* ─── BOUTONS CHANGER ─── */
+
+.col-md-6 button[type="submit"]:not(.btn-save):not(.btn-logout),
+.col-12   button[type="submit"]:not(.btn-save):not(.btn-logout) {
+    margin-top: 8px; background: transparent; color: var(--blue-600);
+    border: 0.5px solid var(--blue-100); padding: 7px 16px; border-radius: 8px;
+    cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 13px;
+    font-weight: 600; transition: 0.2s;
+}
+.col-md-6 button[type="submit"]:not(.btn-save):not(.btn-logout):hover,
+.col-12   button[type="submit"]:not(.btn-save):not(.btn-logout):hover {
+    background: var(--blue-50); border-color: var(--blue-600); color: var(--blue-800);
+}
+
+/* ─── SÉPARATEUR ─── */
+
+hr { border: none; border-top: 0.5px solid var(--gray-100); margin: 32px 0; }
+
+/* ─── SECTION TITLE ─── */
+
+.section-title, h4.section-title {
+    font-size: 16px; font-weight: 700; color: var(--blue-900);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.section-title::before, h4.section-title::before {
+    content: ''; display: inline-block; width: 4px; height: 18px;
+    background: var(--blue-600); border-radius: 4px; flex-shrink: 0;
+}
+
+/* ─── BTN SAVE ─── */
+
+.btn-save {
+    background: var(--blue-800); color: white; border: none;
+    padding: 12px 40px; border-radius: 10px; cursor: pointer;
+    font-weight: 700; font-size: 15px; font-family: 'Outfit', sans-serif;
+    transition: background 0.2s, transform 0.15s; display: inline-block;
+}
+.btn-save:hover { background: var(--blue-900); transform: translateY(-1px); }
+
+/* ─────────────────────────────────────
+   AVIS — FORMULAIRE
+───────────────────────────────────── */
+
+.avis-form {
+    background: white; border-radius: 18px;
+    border: 0.5px solid var(--gray-100); padding: 32px 36px; margin-top: 28px;
+}
+
+.avis-form h2 {
+    font-size: 18px; font-weight: 700; color: var(--blue-900);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.avis-form h2::before {
+    content: ''; display: inline-block; width: 4px; height: 18px;
+    background: var(--blue-600); border-radius: 4px; flex-shrink: 0;
+}
+
+.avis-form textarea {
+    width: 100%; height: 100px; padding: 12px 14px;
+    border: 0.5px solid var(--gray-100); border-radius: 10px;
+    font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--gray-900);
+    resize: none; outline: none; display: block;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.avis-form textarea:focus {
+    border-color: var(--blue-600);
+    box-shadow: 0 0 0 3px rgba(24,95,165,0.08);
+}
+
+.avis-form label {
+    font-size: 13px; color: var(--gray-600); font-weight: 500; margin-right: 10px;
+}
+
+.avis-form select {
+    padding: 9px 14px; border: 0.5px solid var(--gray-100); border-radius: 8px;
+    font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--gray-900);
+    background: white; outline: none; cursor: pointer; transition: border-color 0.2s;
+}
+.avis-form select:focus { border-color: var(--blue-600); }
+
+.avis-form button[type="submit"] {
+    background: var(--blue-800); color: white; border: none;
+    padding: 10px 26px; border-radius: 8px; cursor: pointer;
+    font-weight: 600; font-size: 14px; font-family: 'Outfit', sans-serif;
+    transition: background 0.2s, transform 0.15s; display: inline-block;
+    margin-top: 16px;
+}
+.avis-form button[type="submit"]:hover {
+    background: var(--blue-900); transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────
+   AVIS — LISTE
+───────────────────────────────────── */
+
+.avis-list {
+    background: white; border-radius: 18px;
+    border: 0.5px solid var(--gray-100); padding: 32px 36px;
+    margin-top: 28px; margin-bottom: 60px;
+}
+
+.avis-list h2 {
+    font-size: 18px; font-weight: 700; color: var(--blue-900);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.avis-list h2::before {
+    content: ''; display: inline-block; width: 4px; height: 18px;
+    background: var(--blue-600); border-radius: 4px; flex-shrink: 0;
+}
+
+.card {
+    background: var(--gray-50); border-radius: 12px; padding: 16px 20px;
+    border: 0.5px solid var(--gray-100); margin-bottom: 14px;
+    transition: border-color 0.2s;
+}
+.card:last-child { margin-bottom: 0; }
+.card:hover { border-color: var(--blue-100); }
+
+.card b {
+    display: block; font-size: 14px; font-weight: 600;
+    color: var(--blue-900); margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 14px; color: var(--gray-600);
+    line-height: 1.65; margin-bottom: 6px;
+}
+
+.card p:last-of-type {
+    font-size: 13px; color: #e09000; font-weight: 600; margin-bottom: 0;
+}
+
+.delete-btn,
+.card button {
+    background: transparent; color: #dc3545;
+    border: 0.5px solid #f7c1c1; padding: 6px 14px; border-radius: 8px;
+    cursor: pointer; font-family: 'Outfit', sans-serif;
+    font-size: 12px; font-weight: 600; margin-top: 10px; transition: 0.2s;
+}
+.delete-btn:hover,
+.card button:hover { background: #dc3545; color: white; border-color: #dc3545; }
+
+/* ─────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .nav-content { flex-direction: column; gap: 14px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; }
+    .profile-card { padding: 28px 20px; }
+    .avis-form, .avis-list { padding: 22px 20px; }
+    .col-md-6 { width: 100%; }
+}

@@ -1,271 +1,52 @@
-<!-- resources/views/infirmiers/RV_infirmier.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rendez-vous</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-        body{
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    margin: 0;
-    padding: 0;
-    color: #333;
-}
-
-/* ===== NAVBAR ===== */
-
-.navbar{
-    background: #0d6efd;
-    padding: 15px 40px;
-    width: 100%;
-    box-sizing: border-box;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-.nav-content{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo{
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.logo i{
-    margin-right: 8px;
-}
-
-.nav-links{
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-
-.nav-links a{
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    transition: 0.3s;
-    font-weight: bolder;
-}
-
-.nav-links a:hover{
-    color: #dbeafe;
-}
-
-/* ===== USER BOX ===== */
-
-.user-box{
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: rgba(255,255,255,0.15);
-    padding: 10px 16px;
-    border-radius: 10px;
-}
-
-.user-name{
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-}
-
-.btn-logout{
-    background: #492dbb;
-    color: white;
-    border: none;
-    padding: 9px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn-logout:hover{
-    background: #dc3545;
-}
-
-/* ===== TITRES ===== */
-
-h1,
-h2{
-    text-align: center;
-    margin-top: 40px;
-    color: #0d6efd;
-}
-
-/* ===== TABLE ===== */
-
-table{
-    width: 92%;
-    margin: 25px auto;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-table th{
-    background: #0d6efd;
-    color: white;
-    padding: 15px;
-    font-size: 15px;
-}
-
-table td{
-    padding: 14px;
-    text-align: center;
-    border-bottom: 1px solid #eee;
-    font-size: 15px;
-}
-
-table tr:hover{
-    background: #f9fbff;
-}
-
-/* ===== BUTTONS ===== */
-
-button{
-    border: none;
-    padding: 10px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-button:hover{
-    transform: scale(1.03);
-}
-
-/* bouton accepter */
-
-form button[type="submit"]{
-    background: #198754;
-    color: white;
-}
-
-form button[type="submit"]:hover{
-    background: #157347;
-}
-
-/* bouton refuser */
-
-td:last-child form button{
-    background: #dc3545;
-}
-
-td:last-child form button:hover{
-    background: #bb2d3b;
-}
-
-/* ===== FILTRE ===== */
-
-form{
-    text-align: center;
-}
-
-select{
-    padding: 12px 15px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 220px;
-    font-size: 15px;
-    outline: none;
-    margin-right: 10px;
-}
-
-select:focus{
-    border-color: #0d6efd;
-}
-
-/* ===== MESSAGE VIDE ===== */
-
-td[colspan]{
-    padding: 25px;
-    color: #777;
-    font-style: italic;
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media(max-width: 992px){
-
-    .nav-content{
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .nav-links{
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .user-box{
-        flex-direction: column;
-    }
-
-    table{
-        width: 98%;
-        font-size: 14px;
-    }
-
-    table th,
-    table td{
-        padding: 10px;
-    }
-
-    select{
-        width: 100%;
-        margin-bottom: 10px;
-    }
-}
-
-    </style>
+    <link rel="stylesheet" href="{{ asset('styles/rv_inf.css') }}">
 </head>
+
 <body>
- <nav class="navbar">
-<div class="container nav-content">
+    <nav class="navbar">
+        <div class="container nav-content">
 
-    <a href="#" class="logo">
-        <i class="fa-solid fa-hand-holding-droplet"></i>
-        Infirmières à Domicile
-    </a>
+            <a href="#" class="logo">
+                <i class="fa-solid fa-hand-holding-droplet"></i>
+                Infirmières à Domicile
+            </a>
 
-    <div class="nav-links">
-        <a href="{{ route('rv.infirmier') }}">Rendez-vous</a>
-        <a href="{{ route('disponibilites.index') }}">Disponibilités</a>
-        <a href="{{ route('profile.index') }}">Profile</a>
-    </div>
+            <div class="nav-links">
+                <a href="{{ route('rv.infirmier') }}">Rendez-vous</a>
+                <a href="{{ route('disponibilites.index') }}">Disponibilités</a>
+                <a href="{{ route('profile.index') }}">Profile</a>
+            </div>
 
-    <div class="user-box">
-        <span class="user-name">
-            Bonjour, {{ Auth::user()->prenom }} {{ Auth::user()->nom }}
-        </span>
+            <div class="user-box">
+                <span class="user-name">
+                    Bonjour, {{ Auth::user()->prenom }} {{ Auth::user()->nom }}
+                </span>
 
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button class="btn-logout">Déconnexion</button>
-        </form>
-    </div>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="btn-logout">Déconnexion</button>
+                </form>
+            </div>
 
-</div>
-</nav> 
+        </div>
+    </nav>
     <h1>Les rendez-vous en attente</h1>
 
     <table border="1">
 
         <tr>
+
             <th>Jour</th>
+            <th>Patient</th>
+            <th>Telephone</th>
+            <th>Email</th>
             <th>Date</th>
             <th>Heure début</th>
             <th>Heure fin</th>
@@ -278,47 +59,51 @@ td[colspan]{
 
             @if($rv->etat == 'en_attente')
 
-            <tr>
+                <tr>
 
-                <td>
-                    {{ \Carbon\Carbon::parse($rv->date)->locale('fr')->translatedFormat('l') }}
-                </td>
 
-                <td>{{ $rv->date }}</td>
+                    <td>
+                        {{ucfirst(\Carbon\Carbon::parse($rv->date)->locale('fr')->translatedFormat('l'))  }}
+                    </td>
+                    <td>{{ucfirst($rv->patient->user->nom)  }} {{ucfirst($rv->patient->user->prenom)  }}</td>
+                    <td>{{$rv->patient->user->telephone  }}</td>
+                    <td>{{$rv->patient->user->email  }}</td>
 
-                <td>{{ $rv->heure_debut }}</td>
+                    <td>{{ $rv->date }}</td>
 
-                <td>{{ $rv->heure_fin }}</td>
+                    <td>{{ $rv->heure_debut }}</td>
 
-                <td>{{ $rv->etat }}</td>
+                    <td>{{ $rv->heure_fin }}</td>
 
-                <td>
-                    <form action="{{ route('rv.accepter',$rv->id) }}" method="post">
+                    <td>{{ $rv->etat }}</td>
 
-                        @csrf
-                        @method('PUT')
+                    <td>
+                        <form action="{{ route('rv.accepter', $rv->id) }}" method="post">
 
-                        <button type="submit">
-                            Accepter
-                        </button>
+                            @csrf
+                            @method('PUT')
 
-                    </form>
-                </td>
+                            <button type="submit">
+                                Accepter
+                            </button>
 
-                <td>
-                    <form action="{{ route('rv.refuser',$rv->id) }}" method="post">
+                        </form>
+                    </td>
 
-                        @csrf
-                        @method('PUT')
+                    <td>
+                        <form action="{{ route('rv.refuser', $rv->id) }}" method="post">
 
-                        <button type="submit">
-                            Refuser
-                        </button>
+                            @csrf
+                            @method('PUT')
 
-                    </form>
-                </td>
+                            <button type="submit">
+                                Refuser
+                            </button>
 
-            </tr>
+                        </form>
+                    </td>
+
+                </tr>
 
             @endif
 
@@ -360,7 +145,7 @@ td[colspan]{
 
         </select>
 
-        <button type="submit">
+        <button type="submit" name="filtrer">
             Filtrer
         </button>
 
@@ -371,6 +156,10 @@ td[colspan]{
     <table border="1">
 
         <tr>
+            <th>Jour</th>
+            <th>Patient</th>
+            <th>Telephone</th>
+            <th>Email</th>
             <th>Date</th>
             <th>Heure début</th>
             <th>Heure fin</th>
@@ -379,29 +168,36 @@ td[colspan]{
 
         @forelse($rvParDate as $rv)
 
-        <tr>
+            <tr>
+                <td>
+                    {{ucfirst(\Carbon\Carbon::parse($rv->date)->locale('fr')->translatedFormat('l'))  }}
+                </td>
+                <td>{{ucfirst($rv->patient->user->nom)  }} {{ucfirst($rv->patient->user->prenom)  }}</td>
+                <td>{{$rv->patient->user->telephone  }}</td>
+                <td>{{$rv->patient->user->email  }}</td>
 
-            <td>{{ $rv->date }}</td>
+                <td>{{ $rv->date }}</td>
 
-            <td>{{ $rv->heure_debut }}</td>
+                <td>{{ $rv->heure_debut }}</td>
 
-            <td>{{ $rv->heure_fin }}</td>
+                <td>{{ $rv->heure_fin }}</td>
 
-            <td>{{ $rv->etat }}</td>
+                <td>{{ $rv->etat }}</td>
 
-        </tr>
+            </tr>
 
         @empty
 
-        <tr>
-            <td colspan="4">
-                Aucun rendez-vous accepté
-            </td>
-        </tr>
+            <tr>
+                <td colspan="4">
+                    Aucun rendez-vous accepté
+                </td>
+            </tr>
 
         @endforelse
 
     </table>
 
 </body>
+
 </html>

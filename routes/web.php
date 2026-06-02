@@ -5,16 +5,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AvisController;
 use App\Http\Controllers\DisponibiliteController;
 use App\Http\Controllers\InfirmierController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfileInfirmierController;
 use App\Http\Controllers\RendezvousController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/',[AuthController::class,'home'])->name('home');
 
-Route::middleware(['auth','confirm.password'])->group(function(){
+Route::middleware(['auth','admin'])->group(function(){
 Route::get('/admin/infirmiers', [AdminController::class, 'liste_compte_infirmier'])->name('admin.infirmiers');
 Route::post('/admin/infirmiers/{id}/accepter', [AdminController::class, 'accepter'])->name('admin.infirmiers.accepter');
 Route::post('/admin/infirmiers/{id}/refuser', [AdminController::class, 'refuser'])->name('admin.infirmiers.refuser');
@@ -23,15 +20,21 @@ Route::post('/bloque_patient/{id}', [AdminController::class, 'bloquer_compte_pat
 Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
 });
 
-
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileInfirmierController::class, 'index'])->name('profile.index');
-    Route::put('/profile/update', [ProfileInfirmierController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileInfirmierController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/rendezvous', [RendezVousController::class, 'store'])->name('rendezvous.store');
-    Route::get('/profilepatient', [ProfileInfirmierController::class, 'index'])->name('profile_patient.index');
+Route::middleware(['auth','patient'])->group(function (){
     Route::post('/avis',[AvisController::class,'store']);
+    Route::post('/prendre_rv',[RendezvousController::class,'store'])->name('rendezvous.store');
+    Route::get('/rv_patient',[RendezvousController::class,'index'])->name('rv_patient');
+    Route::put('/rv_patient/refuse/{id}',[RendezvousController::class,'refuser'])->name('rv.annule');
+    Route::get('/profilepatient', [ProfileInfirmierController::class, 'index'])->name('profile_patient.index');
+    Route::put('/profilepatient/update', [ProfileInfirmierController::class, 'update'])->name('profile_patient.update');
+    
+});
+
+
+Route::middleware(['auth','infirmier'])->group(function () {
+    Route::get('/profile', [ProfileInfirmierController::class, 'index'])->name('profile.index');
+    
+    Route::put('/profile/update', [ProfileInfirmierController::class, 'update'])->name('profile.update');
     Route::delete('/avis/{id}',[AvisController::class,'destroy']);
 
     Route::post('/disponibilite/save', [DisponibiliteController::class, 'save'])->name('disponibilite.save');
@@ -41,27 +44,20 @@ Route::middleware('auth')->group(function () {
     Route::put('/rv/accept/{id}',[RendezvousController::class,'accepter'])->name('rv.accepter');
     Route::put('/rv/refuse/{id}',[RendezvousController::class,'refuser'])->name('rv.refuser');
     Route::post('/rv',[RendezvousController::class,'rvParDate'])->name('rvParDate');
+
+    Route::get('/attente', function () {return view('infirmiers.attente');})->name('attente');
 });
 
 
 Route::get('/role', [AuthController::class,'role'])->name('role');
 
-Route::get('/inscription/{role}', [AuthController::class,'inscrire'])
-    ->name('inscrire');
+Route::get('/inscription/{role}', [AuthController::class,'inscrire'])->name('inscrire');
 
-Route::post('/inscription', [AuthController::class,'store'])
-    ->name('inscription.store');
+Route::post('/inscription', [AuthController::class,'store'])->name('inscription.store');
 Route::get('/connexion', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/connexion', [AuthController::class, 'login'])->name('login.post');
 
-Route::get('/attente', function () {
-    return view('infirmiers.attente');
-})->name('attente');
-
-
-
 Route::get('/recherche',[InfirmierController::class,'index'])->name('rechercher');
-
 Route::get('/infirmier/{id}',[InfirmierController::class,'show']);
 
 

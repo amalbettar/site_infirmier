@@ -6,351 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-        }
-
-        /* Container */
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        /* Navbar */
-
-        .navbar {
-            background: #0d6efd;
-            padding: 15px 0;
-            width: 100%;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: white;
-            font-size: 16px;
-            text-decoration: none;
-            transition: 0.3s;
-            font-weight: bolder;
-        }
-
-        .nav-links a:hover {
-            color: #dbeafe;
-        }
-
-        .btn-login {
-            background: white;
-            color: #0d6efd !important;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        /* User Box */
-
-        .user-box {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 8px 15px;
-            border-radius: 10px;
-        }
-
-        .user-name {
-            color: white;
-            font-weight: bold;
-            font-size: 15px;
-        }
-
-        .btn-logout {
-            background: #492dbb;
-            color: white;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn-logout:hover {
-            background: #dc3545;
-        }
-
-        /* Profil */
-
-        .profil {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
-            background: white;
-            padding: 35px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .profil img {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
-            margin: auto;
-            border: 5px solid #0d6efd;
-        }
-
-        .profil h1 {
-            text-align: center;
-            margin-top: 20px;
-            color: #0f4c81;
-            font-size: 35px;
-        }
-
-        .profil p {
-            margin-top: 12px;
-            font-size: 17px;
-            color: #555;
-            text-align: center;
-        }
-
-        /* Disponibilités */
-
-        .profil p:last-of-type {
-            font-size: 28px;
-            font-weight: bold;
-            color: #0f4c81;
-            margin-top: 35px;
-            margin-bottom: 20px;
-        }
-
-        /* Table */
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            overflow: hidden;
-            border-radius: 15px;
-        }
-
-        table th {
-            background: #0d6efd;
-            color: white;
-            padding: 15px;
-            font-size: 15px;
-        }
-
-        table td {
-            padding: 15px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-            background: white;
-        }
-
-        table tr:hover td {
-            background: #f8fbff;
-        }
-
-        /* Select */
-
-        table select {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            outline: none;
-        }
-
-        /* Button */
-
-        table button {
-            background: #0d6efd;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        table button:hover {
-            background: #084298;
-        }
-
-        .profil-container {
-
-            width: 80%;
-            margin: auto;
-
-        }
-
-        .profil-card {
-
-            background: white;
-
-            padding: 20px;
-
-            border-radius: 15px;
-
-            box-shadow: 0 0 10px #ddd;
-
-            margin-top: 30px;
-
-            text-align: center;
-
-        }
-
-        .profil-card img {
-
-            width: 150px;
-            height: 150px;
-
-            border-radius: 50%;
-
-            object-fit: cover;
-
-            margin-bottom: 15px;
-
-        }
-
-        .avis-form {
-
-            background: white;
-
-            padding: 20px;
-
-            border-radius: 15px;
-
-            box-shadow: 0 0 10px #ddd;
-
-            margin-top: 30px;
-
-        }
-
-        .card {
-
-            padding: 15px;
-
-            margin-top: 15px;
-
-            border-radius: 10px;
-
-            box-shadow: 0 0 10px #ddd;
-
-            background: white;
-
-        }
-
-        textarea {
-
-            width: 100%;
-
-            height: 100px;
-
-            padding: 10px;
-
-            border-radius: 10px;
-
-            border: 1px solid #ccc;
-
-        }
-
-        select {
-
-            padding: 10px;
-
-            border-radius: 10px;
-
-        }
-
-        button {
-
-            background: #0d6efd;
-
-            color: white;
-
-            border: none;
-
-            padding: 10px 20px;
-
-            border-radius: 8px;
-
-            cursor: pointer;
-
-            margin-top: 10px;
-
-        }
-
-        .delete-btn {
-
-            background: red;
-
-        }
-
-        button:hover {
-
-            opacity: 0.8;
-
-        }
-
-        /* Responsive */
-
-        @media(max-width:900px) {
-
-            .nav-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-
-            .profil {
-                padding: 20px;
-            }
-
-            .profil h1 {
-                font-size: 28px;
-            }
-
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('styles/show.css') }}">
 </head>
 
 <body>
@@ -366,18 +22,19 @@
             <div class="nav-links">
 
                 <a href="{{ route('home') }}"></i>Accueil</a>
-            
-            <a href="{{ route('rechercher') }}">Rechercher des infirmiers</a>
-            @auth
-            <a href="{{ route('profile_patient.index') }}"><i class="fa-solid fa-user"></i></a>
-            @endauth
+
+                <a href="{{ route('rechercher') }}">Rechercher des infirmiers</a>
+                @auth
+                <a href="{{ route('rv_patient') }}">Mes Rendez-Vous</a>
+                    <a href="{{ route('profile_patient.index') }}"><i class="fas fa-user"></i></a>
+                @endauth
 
                 @if(Auth::check())
 
                     <div class="user-box">
 
                         <span class="user-name">
-                            Bonjour, {{ Auth::user()->prenom }} {{ Auth::user()->nom }}
+                            Bonjour, {{ucfirst(Auth::user()->prenom)  }} {{ucfirst(Auth::user()->nom)  }}
                         </span>
 
                         <form action="{{ route('logout') }}" method="POST">
@@ -411,19 +68,42 @@
 
         <img src="{{asset($infirmier->user->photo)}}">
 
-        <h1>{{$infirmier->user->nom}} {{$infirmier->user->prenom}}</h1>
+        <h1>
+            <i class="fa-solid fa-user-nurse"></i>
+            {{ ucfirst($infirmier->user->nom) }} {{ ucfirst($infirmier->user->prenom) }}
+            <i class="fa-solid fa-user-nurse"></i>
+        </h1>
 
-        <p>{{$infirmier->specialite}}</p>
+        <p>
+            <i class="fa-solid fa-stethoscope"></i>
+            <strong>Spécialité :</strong> {{ $infirmier->specialite }}
+        </p>
 
-        <p>{{$infirmier->user->email}}</p>
+        <p>
+            <i class="fa-solid fa-address-card"></i>
+            <strong>Pour se connecter avec moi : </strong>
+            <i class="fa-solid fa-envelope"></i>
+            <strong>Email :</strong> {{ $infirmier->user->email }}
+            <i class="fa-solid fa-phone"></i>
+            <strong>Téléphone :</strong> {{ $infirmier->user->telephone }}
+        </p>
 
-        <p>{{$infirmier->user->ville}}</p>
 
-        <p>{{$infirmier->user->telephone}}</p>
 
-        <p>{{$infirmier->description}}</p>
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            <strong>Ville :</strong> {{ $infirmier->user->ville }}
+        </p>
 
-        <p>Disponnibilites</p>
+        <p>
+            <i class="fa-solid fa-circle-info"></i>
+            {{ $infirmier->description }}
+        </p>
+
+        <p>
+            <i class="fa-solid fa-calendar-days"></i>
+            <strong>Disponibilités</strong>
+        </p>
         <table border="2">
             <tr>
                 <th>jour</th>
@@ -466,6 +146,7 @@
                                         $debut = strtotime($disponibilite->heure_debut);
                                         $fin = strtotime($disponibilite->heure_fin);
                                     @endphp
+                                    
 
                                     @while($debut < $fin)
 
@@ -519,15 +200,15 @@
 
         </table>
 
-        
+
 
     </div>
-        <div class="profil-container">
+    <div class="profil-container">
 
 
 
-            <!-- FORMULAIRE AVIS -->
-
+        <!-- FORMULAIRE AVIS -->
+        @auth
             <div class="avis-form">
 
                 <h2>Ajouter un avis</h2>
@@ -567,42 +248,43 @@
                 </form>
 
             </div>
+        @endauth
 
-            <!-- AFFICHAGE AVIS -->
+        <!-- AFFICHAGE AVIS -->
 
-            <div class="avis-list">
+        <div class="avis-list">
 
-                <h2>Commentaires des patients</h2>
+            <h2>Commentaires des patients</h2>
 
-                @foreach($avis as $avi)
+            @foreach($avis as $avi)
 
-                    <div class="card">
+                <div class="card">
 
-                        <b>
+                    <b>
 
-                            {{ $avi->patient->user->nom }}
+                        {{ucfirst($avi->patient->user->nom)  }} {{ucfirst($avi->patient->user->prenom)  }}
 
-                        </b>
+                    </b>
 
-                        <p>
+                    <p>
 
-                            {{ $avi->commentaire }}
+                        {{ $avi->commentaire }}
 
-                        </p>
+                    </p>
 
-                        <p>
+                    <p>
 
-                            ⭐ {{ $avi->note }}/5
+                        ⭐ {{ $avi->note }}/5
 
-                        </p>
+                    </p>
 
-                    </div>
+                </div>
 
-                @endforeach
-
-            </div>
+            @endforeach
 
         </div>
+
+    </div>
 
 
 

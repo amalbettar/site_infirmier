@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function showLogin(){
+    public function showLogin()
+    {
         return view('auth.login');
     }
     public function login(Request $request)
@@ -38,8 +39,7 @@ class AuthController extends Controller
 
                     return redirect()->route('attente')
                         ->with('status', 'en_attente');
-                }
-                elseif ($infirmier && $infirmier->validation === 'refuse') {
+                } elseif ($infirmier && $infirmier->validation === 'refuse') {
 
                     Auth::logout();
 
@@ -68,17 +68,18 @@ class AuthController extends Controller
         ]);
     }
 
-    public function role(){
+    public function role()
+    {
         return view('auth.choix-role');
     }
     public function inscrire($role)
     {
-        return view('auth.register',compact('role'));
+        return view('auth.register', compact('role'));
     }
 
     public function store(Request $request)
     {
-        
+
         $request->validate([
 
             'nom' => 'required',
@@ -96,25 +97,25 @@ class AuthController extends Controller
 
             'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
 
-        ],[
+        ], [
             'email.unique' => 'Cet email existe déjà.',
             'telephone.regex' => 'Le numéro doit contenir 10 chiffres.',
             'password.confirmed' => 'La confirmation du mot de passe est incorrecte.',
             'password.required' => 'Le mot de passe est obligatoire.',
             'password.min' => 'Le mot de passe doit contenir au moins 6 caractères.',
-    
+
         ]);
 
         $photoName = null;
 
-        if($request->hasFile('photo'))
-        {
-            $photoName = time().'.'.$request->photo->extension();
+                
+                
+                
+        if ($request->hasFile('photo')) {
+            $photoName = time() . '.' . $request->photo->extension();
 
-            $request->photo->move(
-                public_path('photos'),
-                $photoName
-            );
+            $request->photo->move(public_path('photos'),$photoName);
+            $photoPath = 'photos/' . $photoName;
         }
 
         $user = User::create([
@@ -132,38 +133,41 @@ class AuthController extends Controller
 
             'ville' => $request->ville,
 
-            'photo' => $photoName,
+            'photo' => $photoPath,
 
             'role' => $request->role
         ]);
-        if($request->role==='patient'){
-            Patient::create(['id'=>$user->id]);
+        if ($request->role === 'patient') {
+            Patient::create(['id' => $user->id]);
             return view('auth.login');
         }
 
 
-        if($request->role==='infirmier'){
+        if ($request->role === 'infirmier') {
             Infirmier::create([
 
-            'id' => $user->id,
+                'id' => $user->id,
 
-            'specialite' => $request->specialite,
+                'specialite' => $request->specialite,
 
-            'experience' => $request->experience,
+                'experience' => $request->experience,
 
-            'status' => 'disponible',
+                
 
-            'description' => $request->description,
+                'description' => $request->description,
 
-            'validation' => 'en_attente'
+                'validation' => 'en_attente'
             ]);
             return view('infirmiers.attente');
         }
 
-        
-        
-        //hadi khasha changement mn ba3d !!!
-
         return 'Inscription réussie';
+    }
+    public function home()
+    {
+        $service = Infirmier::distinct()->pluck('specialite'); // atjib ghir champs specialite
+        $nb_patient = Patient::count();
+        $nb_infirmier = Infirmier::count();
+        return view('welcome', compact('nb_infirmier', 'nb_patient', 'service'));
     }
 }
