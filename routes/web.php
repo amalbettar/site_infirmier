@@ -8,6 +8,21 @@ use App\Http\Controllers\InfirmierController;
 use App\Http\Controllers\ProfileInfirmierController;
 use App\Http\Controllers\RendezvousController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+
+
+Route::get('/lang/{locale}', function ($locale) {
+
+    if(in_array($locale,['fr','ar'])){
+
+        Session::put('locale',$locale);
+    }
+    
+
+    return redirect()->back();
+
+});
+
 
 Route::get('/',[AuthController::class,'home'])->name('home');
 

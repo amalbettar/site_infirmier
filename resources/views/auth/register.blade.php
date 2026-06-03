@@ -1,118 +1,113 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ app()->getLocale() }}"
+      dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription Infirmier</title>
+    <title>{{ __('register.title') }}</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('styles/register.css') }}">
 </head>
+
 <body>
 
 <div class="container">
 
-    <h2><span class="imoji"><i class="fa-solid fa-user-injured"></i></span> Inscription {{ucfirst($role)  }} </h2>
+    <h2>
+        <span class="imoji"><i class="fa-solid fa-user-injured"></i></span>
+        {{ __('register.title') }} {{ ucfirst($role) }}
+    </h2>
 
-    <form action="{{ route("inscription.store") }}" method="POST" enctype="multipart/form-data">
+    <a href="{{ url('lang/fr') }}">FR</a>
+    <a href="{{ url('lang/ar') }}">AR</a>
+
+    <form action="{{ route('inscription.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        
+
         <input type="hidden" name="role" value="{{ $role }}"/>
 
         <div class="form-group">
-            <label>Nom</label>
+            <label>{{ __('register.nom') }}</label>
             <input type="text" name="nom" required>
         </div>
 
         <div class="form-group">
-            <label>Prénom</label>
+            <label>{{ __('register.prenom') }}</label>
             <input type="text" name="prenom" required>
         </div>
 
         <div class="form-group">
-            <label>Email</label>
+            <label>{{ __('register.email') }}</label>
             <input type="email" name="email" required>
         </div>
+
         @error('email')
-            <span class="text-red-500 text-sm">
-                {{ $message }}
-            </span>
+            <span class="text-red-500 text-sm">{{ $message }}</span>
         @enderror
 
         <div class="form-group">
-            <label>Téléphone</label>
+            <label>{{ __('register.telephone') }}</label>
             <input type="text" name="telephone">
-            @error('telephone')
-                <span class="text-red-500 text-sm">
-                    {{ $message }}
-                </span>
-            @enderror
         </div>
 
         <div class="form-group">
-            <label>Adresse</label>
+            <label>{{ __('register.adresse') }}</label>
             <input type="text" name="adresse">
         </div>
 
         <div class="form-group">
-            <label>Ville</label>
+            <label>{{ __('register.ville') }}</label>
             <input type="text" name="ville">
         </div>
 
         <div class="form-group">
-            <label>Photo</label>
+            <label>{{ __('register.photo') }}</label>
             <input type="file" name="photo">
         </div>
 
-        @if ($role==='infirmier')
+        @if ($role === 'infirmier')
+
         <div class="form-group">
-            <label>Spécialité</label>
+            <label>{{ __('register.specialite') }}</label>
 
             <select name="specialite">
-                <option value="Soins à domicile">Soins à domicile</option>
-                <option value="Pédiatrie">Pédiatrie</option>
-                <option value="Urgence">Urgence</option>
-                <option value="Gériatrie">Gériatrie</option>
+                <option value="soins_domicile">{{ __('register.soins_domicile') }}</option>
+                <option value="pediatrie">{{ __('register.pediatrie') }}</option>
+                <option value="urgence">{{ __('register.urgence') }}</option>
+                <option value="geriatrie">{{ __('register.geriatrie') }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label>Expérience (années)</label>
+            <label>{{ __('register.experience') }}</label>
             <input type="number" name="experience">
         </div>
 
         <div class="form-group">
-            <label>Description</label>
+            <label>{{ __('register.description') }}</label>
             <textarea name="description"></textarea>
         </div>
+
         @endif
-        
 
         <div class="form-group">
-            <label>Mot de passe</label>
+            <label>{{ __('register.password') }}</label>
             <input type="password" name="password" required>
-
-            @error('password')
-                <span class="text-red-500 text-sm">
-                    {{ $message }}
-                </span>
-            @enderror
         </div>
 
         <div class="form-group">
-            <label>Confirmer mot de passe</label>
+            <label>{{ __('register.confirm_password') }}</label>
             <input type="password" name="password_confirmation" required>
-
-            @error('password_confirmation')
-                <span class="text-red-500 text-sm">
-                    {{ $message }}
-                </span>
-            @enderror
         </div>
 
-        <a href="{{ route('login') }}">vous avez deja un compte ? </a>
+        <a href="{{ route('login') }}">
+            {{ __('register.already_account') }}
+        </a>
 
         <button type="submit">
-            S'inscrire
+            {{ __('register.submit') }}
         </button>
 
     </form>

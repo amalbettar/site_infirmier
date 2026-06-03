@@ -1,97 +1,133 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soins Infirmiers à Domicile</title>
+    
+    <title>{{ __('title_home') }}</title>
 
-    {{-- Font Awesome --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="stylesheet" href="{{ asset('styles/welcome.css') }}">
 </head>
 
 <body>
 
-{{-- Navbar --}}
 <nav class="navbar">
+
     <div class="container nav-content">
 
         <a href="#" class="logo">
+
             <i class="fa-solid fa-hand-holding-droplet"></i>
-            Infirmières à Domicile
+
+            {{ __('site_name') }}
+
         </a>
 
         <div class="nav-links">
-            
-            <a href="{{ route('home') }}"></i>Accueil</a>
-            
-            <a href="{{ route('rechercher') }}">Rechercher des infirmiers</a>
+
+            <a href="{{ route('home') }}">
+                {{ __('home') }}
+            </a>
+
+            <a href="{{ route('rechercher') }}">
+                {{ __('search_nurse') }}
+            </a>
+
             @auth
-            <a href="{{ route('rv_patient') }}">Mes Rendez-Vous</a>
-            <a href="{{ route('profile_patient.index') }}"><i class="fa-solid fa-user"></i></a>
+
+            <a href="{{ route('rv_patient') }}">
+                {{ __('my_appointments') }}
+            </a>
+
+            <a href="{{ route('profile_patient.index') }}">
+                <i class="fa-solid fa-user"></i>
+            </a>
+
             @endauth
 
-           @if(Auth::check())
+            <a href="{{ url('lang/fr') }}">FR</a>
 
-    <div class="user-box">
+            <a href="{{ url('lang/ar') }}">AR</a>
 
-        <span class="user-name">
-            Bonjour, {{ Auth::user()->prenom }} {{ Auth::user()->nom }}
-        </span>
+            @if(Auth::check())
 
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
+            <div class="user-box">
 
-            <button type="submit" class="btn-logout">
-                Déconnexion
-            </button>
+                <span class="user-name">
 
-        </form>
+                    {{ __('hello') }},
 
-    </div>
+                    {{ Auth::user()->prenom }}
 
-@else
+                    {{ Auth::user()->nom }}
 
-    <a href="/login" class="btn-login">
-        Connexion
-    </a>
+                </span>
 
-    <a href="/role" class="btn-login">
-        Inscription
-    </a>
+                <form action="{{ route('logout') }}" method="POST">
 
-@endif
+                    @csrf
+
+                    <button type="submit" class="btn-logout">
+
+                        {{ __('logout') }}
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            @else
+
+            <a href="/login" class="btn-login">
+
+                {{ __('login') }}
+
+            </a>
+
+            <a href="/role" class="btn-login">
+
+                {{ __('register') }}
+
+            </a>
+
+            @endif
 
         </div>
 
     </div>
+
 </nav>
 
-{{-- Hero --}}
 <section class="hero">
 
     <div class="container">
 
         <div class="hero-content">
 
-            <h1>
-                Soins infirmiers à domicile
-            </h1>
+            <h1>{{ __('hero_title') }}</h1>
 
-            <p>
-                Des infirmières qualifiées disponibles pour vos soins
-                à domicile en toute sécurité.
-            </p>
+            <p>{{ __('hero_text') }}</p>
 
             <div class="hero-buttons">
 
-                <a href="{{ route('rechercher') }}" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i>
-                    Rechercher un infirmier
+                <a href="{{ route('rechercher') }}"
+                class="btn btn-primary">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    {{ __('search_nurse_btn') }}
+
                 </a>
 
                 <a href="#services" class="btn btn-outline">
-                    Nos services
+
+                    {{ __('our_services') }}
+
                 </a>
 
             </div>
@@ -102,45 +138,44 @@
 
 </section>
 
-{{-- Services --}}
 <section id="services">
 
     <div class="container">
 
         <h2 class="section-title">
-            Nos Services
+
+            {{ __('our_services') }}
+
         </h2>
 
-        
-          <div class="services-grid">
+        <div class="services-grid">
 
-    @foreach ($service as $s)
+            @foreach ($service as $s)
 
-        <div class="service-card">
+            <div class="service-card">
 
-            <i class="fa-solid fa-user-nurse"></i>
+                <i class="fa-solid fa-user-nurse"></i>
 
-            <h3>{{ $s }}</h3>
+                <h3>{{ __($s) }}</h3>
+
+            </div>
+
+            @endforeach
 
         </div>
-
-    @endforeach
-
-</div>
-
-        
 
     </div>
 
 </section>
 
-{{-- Pourquoi nous --}}
 <section class="bg-light" id="about">
 
     <div class="container">
 
         <h2 class="section-title">
-            Pourquoi nous choisir ?
+
+            {{ __('why_choose_us') }}
+
         </h2>
 
         <div class="about-grid">
@@ -149,7 +184,7 @@
 
                 <i class="fa-solid fa-circle-check"></i>
 
-                <h4>Professionnelles</h4>
+                <h4>{{ __('professional') }}</h4>
 
             </div>
 
@@ -157,7 +192,7 @@
 
                 <i class="fa-solid fa-clock"></i>
 
-                <h4>Disponible 24h/24</h4>
+                <h4>{{ __('available24') }}</h4>
 
             </div>
 
@@ -165,7 +200,7 @@
 
                 <i class="fa-solid fa-truck-medical"></i>
 
-                <h4>Intervention rapide</h4>
+                <h4>{{ __('fast_intervention') }}</h4>
 
             </div>
 
@@ -173,7 +208,7 @@
 
                 <i class="fa-solid fa-notes-medical"></i>
 
-                <h4>Suivi médical</h4>
+                <h4>{{ __('medical_followup') }}</h4>
 
             </div>
 
@@ -183,13 +218,14 @@
 
 </section>
 
-{{-- Comment ça marche --}}
 <section>
 
     <div class="container">
 
         <h2 class="section-title">
-            Comment ça marche ?
+
+            {{ __('how_it_works') }}
+
         </h2>
 
         <div class="steps-grid">
@@ -198,7 +234,7 @@
 
                 <h1>1️⃣</h1>
 
-                <h4>Rechercher un infirmier</h4>
+                <h4>{{ __('step1') }}</h4>
 
             </div>
 
@@ -206,7 +242,7 @@
 
                 <h1>2️⃣</h1>
 
-                <h4>Prendre votre rendez-vous</h4>
+                <h4>{{ __('step2') }}</h4>
 
             </div>
 
@@ -214,7 +250,7 @@
 
                 <h1>3️⃣</h1>
 
-                <h4>Intervention à domicile</h4>
+                <h4>{{ __('step3') }}</h4>
 
             </div>
 
@@ -224,7 +260,6 @@
 
 </section>
 
-{{-- Stats --}}
 <section class="stats">
 
     <div class="container">
@@ -234,18 +269,18 @@
             <div class="stats-box">
 
                 <h1>{{ $nb_patient }}</h1>
-                <p>Patients</p>
+
+                <p>{{ __('patients') }}</p>
 
             </div>
 
             <div class="stats-box">
 
                 <h1>{{ $nb_infirmier }}</h1>
-                <p>Infirmières</p>
+
+                <p>{{ __('nurses') }}</p>
 
             </div>
-
-           
 
         </div>
 
@@ -253,13 +288,14 @@
 
 </section>
 
-{{-- Footer --}}
 <footer>
 
     <div class="container">
 
         <p>
-            © 2026 Soins Infirmiers à Domicile - Tous droits réservés
+
+            © 2026 {{ __('footer_text') }}
+
         </p>
 
     </div>
